@@ -35,7 +35,7 @@ On first run, the database will initialise the admin user at `/routes/middleware
 
 You will be able to login with the following details:
 
-Username: admin@domain.com
-Password: KeepingHumanSafe101
+Username: "admin@domain.com"
+Password: "KeepingHumanSafe101"
 
 You should have an instance of the backend and frontend running.
