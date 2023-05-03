@@ -1,5 +1,7 @@
 # Bugs
 - Login Currently Broke (Fixing)
+![alt text](https://i.ibb.co/G9DFQYH/daizyai.png)
+
 
 # Daizy AI
 - An Open Source Project
