@@ -211,56 +211,29 @@ class appStore {
 	@observable copyToClipboardText = ``
 	copyToClipboard = (output) => {
 		if (output instanceof Array) {
-		  output = output.join("\n")
+			output = output.join("\n")
 		}
-		
-		let urls = output.match(/\bhttps?:\/\/\S+/gi);
-		if (urls && urls.length > 0) {
-		  urls.forEach((url, index) => {
-			setTimeout(() => window.open(url), index * 1000);
-		  });
-		} else {
-		  if (!navigator.clipboard) {
+		if (!navigator.clipboard) {
 			let textarea = document.getElementById('copy-textarea');
 			this.copyToClipboardText = `${output}`;
 			textarea.focus();
 			textarea.select()
 			document.execCommand('copy')
 			return;
-		  }
-		  
-		  navigator.clipboard.writeText(output).then(function () {
-			console.log('Async: Copying to clipboard was successful!');
-		  }, function (err) {
-			console.error('Async: Could not copy text: ', err);
-		  });
 		}
-	  }
-	  
-	
-	
-	  
-	  
-	
+		navigator.clipboard.writeText(output).then(function() {
+			console.log('Async: Copying to clipboard was successful!');
+		}, function(err) {
+			console.error('Async: Could not copy text: ', err);
+		});
+	}
 
-	  // copyToClipboard = (output) => {
-	// 	if (output instanceof Array) {
-	// 		output = output.join("\n")
-	// 	}
-	// 	if (!navigator.clipboard) {
-	// 		let textarea = document.getElementById('copy-textarea');
-	// 		this.copyToClipboardText = `${output}`;
-	// 		textarea.focus();
-	// 		textarea.select()
-	// 		document.execCommand('copy')
-	// 		return;
-	// 	}
-	// 	navigator.clipboard.writeText(output).then(function() {
-	// 		console.log('Async: Copying to clipboard was successful!');
-	// 	}, function(err) {
-	// 		console.error('Async: Could not copy text: ', err);
-	// 	});
-	// }
+	@observable feedback = ``
+	reportToFeedback = (output) => {
+		this.redirect = "/my-profile/feedback"
+		this.feedback = `${output}`
+		setTimeout(()=>{ this.redirect = "" }, 50)
+	}
 
 	
 }

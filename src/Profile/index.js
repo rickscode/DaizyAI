@@ -7,6 +7,7 @@ import { IdentificationIcon,  CheckIcon,
 } from '@heroicons/react/outline'
 import MainBody from '../Components/Body'
 import Referral from './Referral'
+import Feedback from './Feedback'
 import {Helmet} from "react-helmet";
 import EnvIcon from './EnvIcon'
 import { withRouter } from 'react-router-dom'
@@ -15,6 +16,84 @@ import { observer, inject } from 'mobx-react'
 @inject('store')
 @observer
 class Body extends Component {
+
+	@computed get headerMessage(){
+		if(this.props.store.profile.status === "trialing"){
+			return "7 Day Trial"
+		}
+		if(this.props.store.profile.status === "active"){
+			if(this.props.store.profile.cancel_at_period_end){
+				return `Set to cancel soon`
+			}
+			return `${this.props.store.profile.plan} Plan`
+		}
+		if(this.props.store.profile.status === "incomplete"){
+			return `${this.props.store.profile.plan} Plan Restarted`
+		}
+		return "Expired"
+	}
+
+	@computed get ifNotActive(){
+		if(this.props.store.profile.cancel_at_period_end){
+			return "Canceled"
+		}
+		if(this.props.store.profile.status === "trialing"){
+			return "Trialing"
+		}
+		return false
+	}
+
+	@computed get fromColor(){
+		if(this.props.store.profile.status === "trialing"){
+			return "gray-400"
+		}
+		if(this.props.store.profile.status === "active"){
+			if(this.props.store.profile.cancel_at_period_end){
+				return "yellow-500"
+			}
+			return "green-500"
+		}
+		if(this.props.store.profile.status === "incomplete"){
+			return "yellow-600"
+		}
+		return "red-500"
+	}
+
+	@computed get currentPeriodEnd(){
+		// console.log(this.props.store.profile.current_period_end)
+		if(this.props.store.profile.current_period_end && this.props.store.profile.current_period_end.length > 0){
+			var days_difference = Math.round(((new Date(this.props.store.profile.current_period_end)).getTime() - (new Date()).getTime() ) / (1000 * 60 * 60 * 24));  
+			if(days_difference < 0) {
+				return 0
+			}
+			return days_difference
+		}
+		return 0
+	}
+
+	@observable plan = {
+		plan: '',
+	}
+
+	componentDidMount(){
+		this.props.store.refreshTokenAndProfile()
+		makeObservable(this);
+		this.init()
+	}
+
+	init = async () => {
+		let res = await this.props.store.api.post("/user/stripe/plan")
+		this.plan = {
+			...res.data
+		}
+		console.log(`this.plan`,{...this.plan})
+	}
+
+	onBack = () => {
+		this.props.history.push(`/my-profile`)
+	}
+
+
 	render() {
 	return (
 		<>
@@ -30,7 +109,7 @@ class Body extends Component {
 			>
 					<Route exact path="/my-profile">
 						<Helmet>
-							<title>{`My Profile - Daizy AI`}</title>
+							<title>{`My Profile - DaizyAI`}</title>
 						</Helmet>
 						
 				</Route>
@@ -38,9 +117,34 @@ class Body extends Component {
 				</Header>
 			<MainBody className="px-4 py-4 md:px-28 md:py-8 lg:py-12">
 
-		
+				<Switch>
+					
+					<Route exact path="/my-profile/referral">
+						<Referral />
+					</Route>
+					<Route exact path="/my-profile/feedback">
+						<Feedback />
+					</Route>
+					<Route>
+
+						
+							
 						<Grid>
 
+
+
+
+							<Tool
+								Icon={ChatAltIcon}
+								title={"Feedback"} 
+								desc={"Provide comments on your experience"} 
+								to={"/my-profile/feedback"}
+								fromColor="gray-400"
+								toColor="gray-400"
+							/>
+
+							
+							
 							<ToolDiv 
 								Icon={ReplyIcon}
 								title={"Log Out"} 
@@ -50,7 +154,14 @@ class Body extends Component {
 								toColor="gray-400"
 							/>
 						</Grid>
+					</Route>
+				</Switch>
+			
+			
+
+			
 		
+
 			
 </MainBody>
 </>)
@@ -125,5 +236,7 @@ const ATool = ({ Icon, title, desc, to, group, fromColor, toColor, onClick, api 
 </div>
 </div>
 </a>
+
+
 
 export default withRouter(Body)

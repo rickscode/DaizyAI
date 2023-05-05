@@ -1,6 +1,6 @@
 
 function Header({ title, category, desc, Icon, options, currentOption, fromColor, children }){ return (
-<div className="bg-white md:px-8 pt-4 shadow-lg mb-px border-b border-black-300">
+<div className="bg-white md:px-8 pt-4 shadow-lg mb-px border-b border-gray-300">
 
     <div className="container mx-auto px-4 md:px-28 flex items-center">
         {Icon ? <div className={`mr-4 hidden md:inline-block text-${fromColor ? fromColor : "green-500"}`}>

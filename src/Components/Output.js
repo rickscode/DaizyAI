@@ -7,12 +7,11 @@ import {   DuplicateIcon, ExclamationCircleIcon
 import styled from 'styled-components'
 import { observer, inject } from 'mobx-react'
 
-
 import CodeEditor from "@uiw/react-textarea-code-editor";
 
 
 export const Output = inject('store')(observer(({ store,title, desc, Icon, output, code, language, outputs, loading, children, fromColor, toColor, outputsColor, OutputsIcon}) => {
-	return (<div className="relative mb-12"><div className={`absolute inset-0 bg-gradient-to-r from-${fromColor ? fromColor : "green-400"} to-${toColor ? toColor : "yellow-500"} shadow-lg transform md:skew-y-0 md:-rotate-3 md:rounded-3xl -mt-1 md:mt-0`}></div>
+	return (<div className="relative mb-12"><div className={`absolute inset-0 bg-gradient-to-r from-${fromColor ? fromColor : "green-400"} to-${toColor ? toColor : "blue-500"} shadow-lg transform md:skew-y-0 md:-rotate-3 md:rounded-3xl -mt-1 md:mt-0`}></div>
 	<div className=" align-bottom bg-white md:rounded-3xl text-left  shadow-xl transform transition-all sm:align-middle transition shadow-md hover:shadow-2xl focus:shadow-2xl">
 
 	<div className=" px-6 py-6">
@@ -32,8 +31,6 @@ export const Output = inject('store')(observer(({ store,title, desc, Icon, outpu
 					<p className="text-sm text-gray-500">
 					{desc}
 					</p>
-					<img class="h-auto max-w-full" src={desc} />
-
 				</div>
 		
 		</div>
@@ -94,7 +91,7 @@ export const QuickTools = inject('store')(observer(({ store, output, outputs, co
 			>
 				<DuplicateIcon className="w-5 h-5" />
 				<Tooltip className="absolute bottom-2 flex flex-col items-center mb-6 group-hover:flex">
-					<span className="relative z-10 p-3 text-sm leading-none text-gray-800 bg-white bg-opacity-25 shadow-lg text-center backdrop-filter backdrop-blur rounded-md">Copy text to clipboard or Open images in new tabs</span>
+					<span className="relative z-10 p-3 text-sm leading-none text-gray-800 bg-white bg-opacity-25 shadow-lg text-center backdrop-filter backdrop-blur rounded-md">Copy text to clipboard</span>
 				</Tooltip>
 			</Shortcut>
 			<div className="flex-1"></div>

@@ -64,7 +64,9 @@ class App extends Component {
                         </Switch>
                       </Route>
                       <Route path="/my-profile" component={Profile} />
-                    
+                      <Route path="/signup/failed" component={Profile} />
+                      <Route path="/signup/success" component={LoginSuccess} />
+                      <Route path="/signup/success" component={LoginSuccess} />
                     
                   </Switch>
                 </> : <> {/* Logged in but no plan */}

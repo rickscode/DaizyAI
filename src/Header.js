@@ -102,7 +102,7 @@ class SidebarCompontent extends Component {
 														 activeClassName="bg-gray-100 hover:bg-gray-200 text-gray-800 transition"
 														 className="text-lg flex py-3 px-6 lg:py-4 lg:px-8 cursor-pointer hover:bg-gray-100 rounded-t-md font-medium transition items-center">
 															 <IconDashboard className="w-7 h-7 lg:mr-4 transition" />
-															 <div className="hidden lg:block">Agents</div>
+															 <div className="hidden lg:block">AI Bots</div>
 															</NavLink>
 														 
 														<div className="relative text-gray-400 focus-within:text-green-500 flex flex-1 ">

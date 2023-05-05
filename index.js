@@ -12,7 +12,9 @@ const port = 3080
 
 app.use(morgan('dev'))
 app.use(cors())
-
+app.use((req, res, next) => {
+    bodyParser.json()(req, res, next);
+});
 // for parsing application/xwww-
 app.use(bodyParser.urlencoded({ extended: true })); 
 //form-urlencoded

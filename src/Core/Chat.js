@@ -316,7 +316,7 @@ class Tool extends Component {
             return(
                 <>
                 <Helmet>
-                    <title>{`${this.tool.title} Tool - Daizt AI`}</title>
+                    <title>{`${this.tool.title} Tool - OpenAI Template`}</title>
                 </Helmet>
                 <Header 
                     title={this.tool.title}

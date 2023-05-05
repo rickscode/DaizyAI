@@ -46,7 +46,7 @@ class Body extends Component {
 
 		<>
 			<Helmet>
-				<title>{`Agents - Daizy AI`}</title>
+				<title>{`Bots - Daizy AI`}</title>
 			</Helmet>
 			<MainBody className="px-4 py-4 md:px-28 md:py-8 lg:py-12 ">
 

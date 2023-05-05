@@ -5,7 +5,7 @@ const dev = {
   
 const prod = {
 	baseURL: '/api/',
-	landingPageUrl: "https://daizyai.tech",
+	landingPageUrl: "https://app.openaitemplate.com",
 };
   
 const config = process.env.NODE_ENV === 'development'

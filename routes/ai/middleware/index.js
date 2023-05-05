@@ -1,5 +1,7 @@
+const creditCheck = require('./creditCheck');
 const contentFilterCheck = require('./contentFilterCheck');
 const sendResponse = require('./sendResponse');
+const creditPayment = require('./creditPayment');
 const saveToHistory = require('./saveToHistory');
 
 const initMiddleware = async (req, res, next) => {
@@ -27,6 +29,8 @@ const checks = {
 	initMiddleware,
 	contentFilterCheck,
 	sendResponse,
+	creditCheck,
+	creditPayment,
 	saveToHistory,
 }
 

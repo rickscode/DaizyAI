@@ -16,7 +16,7 @@
 ### Requirements
 
 - OpenAI account + API Key
-- MongoDB Cloud instance database (free tier) + Cluster/Login
+- MongoDB Cloud instance database (free tier) + Cluster/Login.
 - NodeJS 14+
 - NPM
 - Python
