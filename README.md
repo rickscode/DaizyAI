@@ -1,8 +1,5 @@
-# Bugs
-- Login Currently Broke (Fixing)
-![alt text](https://i.ibb.co/G9DFQYH/daizyai.png)
 
-
+<!-- ![alt text](https://i.ibb.co/G9DFQYH/daizyai.png) -->
 # Daizy AI
 - An Open Source Project
 - OpenAI Powered Content Creation Suite For Digital Nomads & Online Content Creators
