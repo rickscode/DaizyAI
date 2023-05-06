@@ -22,7 +22,7 @@ app.post('/code/interpret', async (req, res, next) => {
 			prompt += inputRaw
 
 			const gptResponse = await openai.complete({
-				engine: 'davinci',
+				engine: 'davinci --003',
 				prompt,
 				maxTokens: 100,
 				temperature: 0.5,
@@ -57,9 +57,11 @@ app.post('/code/interpret', async (req, res, next) => {
 				outputs = outputs.filter((item, pos, self) => self.indexOf(item) === pos)
 			}
 
-			req.locals.input = prompt
-			req.locals.inputRaw = inputRaw
-			req.locals.outputs = outputs
+			console.log(outputs);
+
+			res.locals.input = prompt;
+			res.locals.inputRaw = inputRaw;
+			res.locals.outputs = outputs;
 
 			next();
 

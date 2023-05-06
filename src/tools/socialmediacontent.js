@@ -15,8 +15,8 @@ const obj = {
 	to: "/ai/Content/socialmediacontent",
 	api: "/ai/Content/socialmediacontent",
 	
-	fromColor: "blue-600",
-	toColor: "yellow-500",
+	fromColor: "gray-600",
+	toColor: "gray-500",
 
 	output: {
 		title: "Blog Post",

@@ -5,6 +5,9 @@ let app = express.Router()
 
 app.post('/image/imagegenerator', async (req, res, next) => {
   try {
+    req.locals = req.locals || {}; // Add this line
+
+
     let { content } = req.body
 
     let prompt = `Generate a stunning detailed and accurate image for the user from their instructions "${content}"\n\n` 
@@ -14,7 +17,7 @@ app.post('/image/imagegenerator', async (req, res, next) => {
     const response = await axios.post('https://api.openai.com/v1/images/generations', {
       prompt,
       n: 1,
-      size: "256x256",
+      size: "1024x1024",
     }, {
       headers: {
         'Authorization': `Bearer ${openai.OPENAI_API_KEY}`,

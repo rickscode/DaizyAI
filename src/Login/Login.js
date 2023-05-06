@@ -105,9 +105,9 @@ class Login extends Component {
 				</div>
 			<div className={`min-w-full md:min-w-0 bg-white rounded-xl shadow-xl transform transition-all  transition shadow-md hover:shadow-2xl focus:shadow-2xl w-1/2`}>
 			<div className="align-bottom flex  transform transition-all sm:align-middle transition flex divide-x divide-gray-300 ">
-				<NavLink to="/login"  className={`flex-1 justify-center transition py-4 px-4 pr-8 rounded-t-md flex text-${this.props.location.pathname === "/login"  ? "gray-800" : "gray-600"} font-medium  bg-${this.props.location.pathname === "/login" ? "white" : "gray-300"} hover:bg-${this.props.location.pathname === "/login"  ? "white" : "gray-100"} cursor-pointer`} >
+				<NavLink to="/login"  className={`flex-1 justify-center transition py-4 px-4 pr-8 rounded-t-md flex text-${this.props.location.pathname === "/login"  ? "yellow-800" : "yellow-600"} font-medium  bg-${this.props.location.pathname === "/login" ? "white" : "gray-300"} hover:bg-${this.props.location.pathname === "/login"  ? "white" : "gray-100"} cursor-pointer`} >
 						  <div className={`transition mr-4  flex-shrink-0 inline-flex items-center justify-center text-sm h-6 w-6 rounded-full bg-${this.props.location.pathname === "/login" ? "green-300" : "gray-200"} text-${this.props.location.pathname === "/login" ? "green" : "gray"}`}>
-							  <CheckIcon className={`transition h-4 w-4 text-${this.props.location.pathname === "/login" ? "green-600" : "gray-400"}`} aria-hidden="true" />
+							  <CheckIcon className={`transition h-4 w-4 text-${this.props.location.pathname === "/login" ? "green-600" : "yellow-400"}`} aria-hidden="true" />
 						  </div>
 						 Login
 				  </NavLink>
@@ -180,7 +180,7 @@ class Login extends Component {
 						<input value={password} onChange={e=>onChange(e.target.value,'password')} type="password" className="rounded-md text-lg px-4 py-2  border border-gray-300 inline-block" placeholder="*******" />
 					</div>
 					<div className="flex flex-col">
-						<button type="submit" className="hover:bg-gray-600 font-medium rounded-lg text-lg px-4 py-2 bg-gray-500 text-white mt-4 border border-gray-300 inline-block" >
+						<button type="submit" className="hover:bg-gray-600 font-medium rounded-lg text-lg px-4 py-2 bg-yellow-500 text-white mt-4 border border-yellow-300 inline-block" >
 							Log in
 						</button>
 						{/* <div onClick={signUp} className="hover:bg-gray-600 font-medium rounded-lg text-lg px-4 py-2 bg-gray-500 text-white mt-4 border border-gray-300 inline-block" >

@@ -3,11 +3,6 @@ const openai = require('../middlewares/openai');
 
 let app = express.Router()
 
-// input tokens: 150
-// input characters: 600
-// output tokens: 50
-// output characters: 200
-
 app.post('/Content/blogcontentai', async (req, res, next) => {
   try {
     let { content } = req.body
@@ -25,36 +20,39 @@ app.post('/Content/blogcontentai', async (req, res, next) => {
 		// `${content}:football\nBLOG POST:\n\n\nFootball: A Popular Sport Around the World\n\nFootball, or soccer, is one of the most popular sports in the world. As of 2019, it had an estimated 4 billion fans, making it the most popular sport in the world. This blog post aims to provide an overview of football and its worldwide appeal, along with an FAQ section at the end to address some common questions.\n\nHistory of Football\n\nThe earliest forms of football have been traced back to ancient Greece and Rome. The modern game of football began in England in the 19th century, and the first set of rules were established in 1863. The sport quickly spread around the world, and the first international match was held between Scotland and England in 1872. Football has since grown to become one of the most popular sports around the world, with over 200 national teams competing in the FIFA World Cup.\n\nComponents of Football\n\nFootball is a team sport played between two teams of 11 players. The aim of the game is to score more goals than the opposing team. The game is divided into two halves of 45 minutes, with a 15-minute break at halftime. The teams can score by kicking the ball into the opposing team's goal, and the team with the most goals at the end of the game is declared the winner.\n\nIn addition to the 11 players on the field, each team is usually accompanied by a coach, a manager, and a medical team. The team may also have additional support staff, such as a fitness coach and a tactical analyst.\n\nPopularity of Football\n\nFootball has become the most popular sport in the world, with an estimated 4 billion fans. It is particularly popular in Europe, South America, and Africa, and it is gaining popularity in Asia and North America. The FIFA World Cup, which is held every four years, is the most watched sporting event in the world. The 2018 World Cup final between France and Croatia had an estimated 1 billion viewers, making it the most watched television event in history.\n\nFAQs\n\n1. What is football?\n\nFootball, also known as soccer, is a team sport played between two teams of 11 players. The aim of the game is to score more goals than the opposing team. The game is divided into two halves of 45 minutes, with a 15-minute break at halftime.\n\n2. How many people play football?\n\nIn addition to the 11 players on the field, each team is usually accompanied by a coach, a manager, and a medical team. The team may also have additional support staff, such as a fitness coach and a tactical analyst.\n\n3. What is the most popular football event?\n\nThe FIFA World Cup, which is held every four years, is the most watched sporting event in the world. The 2018 World Cup final between France and Croatia had an estimated 1 billion viewers, making it the most watched television event in history.\n\n4. Where is football popular?\n\nFootball is particularly popular in Europe, South America, and Africa, and it is gaining popularity in Asia and North America.\n###\n`
 
 
-    let inputRaw = `${content}`
-    prompt += inputRaw
+		let inputRaw = `${content}` // here is where people enter stuff
+		prompt += inputRaw
+	
+		const gptResponse = await openai.complete({
+			engine: 'text-davinci-003',
+			prompt,
+			maxTokens: 800,
+			temperature: 0.1,
+			topP: 1,
+			frequencyPenalty: 1,
+			presencePenalty: 0,
+			bestOf: 1,
+			n: 1,
+			user: req.user._id,
+			stream: false,
+			stop: ["###", "<|endoftext|>", ],
+		});
+	
+		let output = `${gptResponse.data.choices[0].text}`
 
-    const gptResponse = await openai.complete({
-		engine: 'text-davinci-003', // Replace 'davinci' with 'text-davinci-002' for GPT-3.5 Turbo
-		prompt,
-		maxTokens: 1000,
-		temperature: 0.5,
-		topP: 1,
-		frequencyPenalty: 0.2,
-		presencePenalty: 0,
-		bestOf: 1,
-		n: 1,
-		user: req.user._id,
-		stream: false,
-	  });
-
-    let output = `${gptResponse.data.choices[0].text}`
-
-    req.locals.input = prompt
-    req.locals.inputRaw = inputRaw
-    req.locals.output = output
-
-    next()
-
-  } catch (err) {
-    console.log('Error:', err.message);
-    console.log('Error details:', err.response && err.response.data ? err.response.data : '');
-    // You can also pass the error to the next middleware using next(err);
-  }
-})
-
-module.exports = app
+		console.log(output);
+		req.locals.input = prompt
+		req.locals.inputRaw = inputRaw
+		req.locals.output = output
+	
+		next()
+	
+		} catch (err){
+			console.log(err.response)
+			console.log(err.data)
+			console.log(err.message)
+		}
+		
+	  })
+	
+	module.exports = app
