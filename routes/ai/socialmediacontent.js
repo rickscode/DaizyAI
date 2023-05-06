@@ -35,7 +35,7 @@ app.post('/Content/socialmediacontent.js', async (req, res, next) => {
 		engine: 'text-davinci-003',
 		prompt,
 		maxTokens: 750,
-		temperature: 0.5,
+		temperature: 5,
 		topP: 1,
 		frequencyPenalty: 0.2,
 		presencePenalty: 0,
@@ -46,10 +46,13 @@ app.post('/Content/socialmediacontent.js', async (req, res, next) => {
 	  });
 
     let output = `${gptResponse.data.choices[0].text}`
+	
 
     req.locals.input = prompt
     req.locals.inputRaw = inputRaw
-    req.locals.output = output
+    req.locals.outputs = output
+
+	console.log(req.locals.outputs);
 
     next()
 
