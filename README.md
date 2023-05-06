@@ -21,7 +21,7 @@
 
 ### Installation
 
-- NPM install or Yarn in the rood directory to install modules
+- NPM install or Yarn in the root project directory to install modules
 - Create and ENV file from DEV.ENV and enter credentials
 
 ### Start App
