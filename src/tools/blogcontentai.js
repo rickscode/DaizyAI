@@ -12,8 +12,8 @@ const obj = {
 	// tags: [],
 	permissions: ['user'],
 
-	to: "/ai/Content/blogcontentai",
-	api: "/ai/Content/blogcontentai",
+	to: "/ai/blogcontentai",
+	api: "/ai/blogcontentai",
 	
 	fromColor: "gray-600",
 	toColor: "gray-500",
@@ -124,3 +124,72 @@ Individuals can contribute to fighting climate change by reducing their own gree
 
 export default obj
 
+// import { ClipboardListIcon } from '@heroicons/react/solid';
+
+// const handleButtonClick = async (content) => {
+//   try {
+//     const response = await fetch('/api/ai/Content/blogcontentai', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         content: content,
+//       }),
+//     });
+
+//     const data = await response.json();
+//     console.log(data);
+//   } catch (error) {
+//     console.error('Error:', error);
+//   }
+// };
+
+// const obj = {
+//   title: 'DaizyAI Blog Writer',
+//   desc: 'Create engaging written blog content',
+//   category: 'Content',
+//   Icon: ClipboardListIcon,
+//   permissions: ['user'],
+
+//   to: '/ai/Content/blogcontentai',
+//   api: '/ai/Content/blogcontentai',
+
+//   fromColor: 'gray-600',
+//   toColor: 'gray-500',
+
+//   output: {
+//     title: 'Blog Post',
+//     desc: '',
+//   },
+
+//   prompts: [
+//     {
+//       title: 'Daizy Blog AI',
+//       desc: 'Create unique blog and article content',
+//       prompts: [
+//         {
+//           title: 'Enter Subject For Blog Post',
+//           attr: 'Content',
+//           value: '',
+//           placeholder: 'Climate Change',
+//           label: '',
+//           type: 'textarea',
+//           maxLength: 200,
+//           required: true,
+//           error: '',
+//           example: 'Climate change',
+//         },
+//       ],
+//       example: {
+//         output: `Title: Climate Change: The Defining Issue of Our Time
+// ...
+// 8.How can individuals contribute to fighting climate change?
+// Individuals can contribute to fighting climate change by reducing their own greenhouse gas emissions through actions such as conserving energy, using public transportation or electric vehicles, eating a plant-based diet, and advocating for climate-friendly policies. Additionally, individuals can support organizations working to address climate change, stay informed on the issue, and vote for leaders who prioritize climate action.`,
+//       },
+// 	  onClick: () => handleButtonClick(obj.prompts[0].prompts[0].value),
+//     },
+//   ],
+// };
+
+// export default obj;
