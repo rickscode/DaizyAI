@@ -4,23 +4,24 @@ const openai = require('../middlewares/openai');
 
 let app = express.Router()
 
-app.post('/example', async (req, res, next) => {
+app.post('/daizyaiwriter', async (req, res, next) => {
 	try {
 		let { content } = req.body
   
-	let prompt = `Explain the topic ${content} in 100 words`
-	// `1. Explain what the topic is, why it is important, and any relevant history or background information.\n\n` +
-	//  `2. Discuss the current state of the topic, including any recent developments, challenges, or controversies.\n\n` +
-	//  `3. Offer your own perspective or analysis on the topic, supported by credible sources and evidence.\n\n` +
-	//  `Use a clear and sophisticated style appropriate for an adult audience, and aim to engage and inform your readers with your writing.\n\n###`
+	let prompt = `Explain the topic ${content} in the style of a blog or article words an FAQs section at the end` +
+	`1. Explain what the topic is, why it is important, and any relevant history or background information.\n\n` +
+	 `2. Discuss the current state of the topic, including any recent developments, challenges, or controversies.\n\n` +
+	 `3. Offer your own perspective or analysis on the topic, supported by credible sources and evidence.\n\n` +
+	 `3. Write an FAQs section on the topic.\n\n` +
+	 `Use a clear and sophisticated style appropriate for an adult audience, and aim to engage and inform your readers with your writing.\n\n###`
 
 	let inputRaw = `${content}` // here is where people enter stuff
 	prompt += inputRaw
 
 	const gptResponse = await openai.complete({
-		engine: 'davinci',
+		engine: 'text-davinci-003',
 		prompt,
-		maxTokens: 700,
+		maxTokens: 500,
 		temperature: 0.1,
 		topP: 1,
 		frequencyPenalty: 1,

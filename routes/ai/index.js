@@ -19,8 +19,7 @@ app.use('/', require('./code/interpret'));
 app.use('/', require('./writing/intro'));
 app.use('/', require('./jobad'));
 app.use('/', require('./helloworld'));
-app.use('/', require('./example'));
-app.use('/', require('./blogcontentai'));
+app.use('/', require('./daizyaiwriter'));
 app.use('/', require('./socialmediacontent.js'));
 app.use('/', require('./imagegenerator'));
 
