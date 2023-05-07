@@ -1,16 +1,114 @@
-import Loader from './Loader'
+// import Loader from './Loader'
+// import Typist from 'react-typist';
+// import {  CheckIcon,
+// } from '@heroicons/react/solid'
+// import {   DuplicateIcon, ExclamationCircleIcon
+// } from '@heroicons/react/outline'
+// import styled from 'styled-components'
+// import { observer, inject } from 'mobx-react'
+
+// import CodeEditor from "@uiw/react-textarea-code-editor";
+
+
+// export const Output = inject('store')(observer(({ store,title, desc, Icon, output, code, language, outputs, loading, children, fromColor, toColor, outputsColor, OutputsIcon}) => {
+import Loader from './Loader';
 import Typist from 'react-typist';
-import {  CheckIcon,
-} from '@heroicons/react/solid'
-import {   DuplicateIcon, ExclamationCircleIcon
-} from '@heroicons/react/outline'
-import styled from 'styled-components'
-import { observer, inject } from 'mobx-react'
+import { CheckIcon } from '@heroicons/react/solid';
+import { DuplicateIcon, ExclamationCircleIcon } from '@heroicons/react/outline';
+import styled from 'styled-components';
+import { observer, inject } from 'mobx-react';
+// import ClickableLink from './ClickableLink';
+import CodeEditor from '@uiw/react-textarea-code-editor';
+import Linkify from 'react-linkify';
 
-import CodeEditor from "@uiw/react-textarea-code-editor";
 
+export const Output = inject('store')(
+  observer(({ store, title, desc, Icon, output, code, language, outputs, loading, children, fromColor, toColor, outputsColor, OutputsIcon }) => {
 
-export const Output = inject('store')(observer(({ store,title, desc, Icon, output, code, language, outputs, loading, children, fromColor, toColor, outputsColor, OutputsIcon}) => {
+	const renderImage = () => {
+		if (!output) return null;
+	  
+		const imageUrlRegex = /(https?:\/\/[^\s]+\.(?:png|jpg|jpeg|gif)(?:\?[^\s]+)?)/g;
+	  
+		if (output.match(imageUrlRegex)) {
+		  return <img src={output} alt="Generated" className="w-full h-auto" />;
+		}
+	  
+		// Render text output when there is no image URL match
+		return (
+		  <Typist
+			stdTypingDelay={0}
+			avgTypingDelay={7}
+			cursor={{
+			  show: true,
+			  blink: true,
+			  element: '|',
+			  hideWhenDone: true,
+			  hideWhenDoneDelay: 250,
+			}}
+		  >
+			<Linkify>{output}</Linkify>
+		  </Typist>
+		);
+	  };
+	  
+
+// 	const renderImage = () => {
+//   if (!output) return null;
+
+//   const imageUrlRegex = /(https?:\/\/[^\s]+\.(?:png|jpg|jpeg|gif)(?:\?[^\s]+)?)/g;
+
+//   if (output.match(imageUrlRegex)) {
+//     return <img src={output} alt="Generated" className="w-full h-auto" />;
+//   }
+
+//   return null;
+// };
+
+	// const renderOutput = () => {
+	// 	if (!output) return null;
+	  
+	// 	const linkRegex = /(https?:\/\/[^\s]+)/g;
+	  
+	// 	const outputWithLinks = output.split(linkRegex).map((part, index) => {
+	// 	  if (part.match(linkRegex)) {
+	// 		// Preserve the original URL encoding
+	// 		const originalUrl = decodeURIComponent(part);
+	// 		return <ClickableLink key={index} url={originalUrl} />;
+	// 	  }
+	// 	  return part;
+	// 	});
+	  
+	// 	return (
+	// 	  <Typist
+	// 		stdTypingDelay={0}
+	// 		avgTypingDelay={7}
+	// 		cursor={{
+	// 		  show: true,
+	// 		  blink: true,
+	// 		  element: '|',
+	// 		  hideWhenDone: true,
+	// 		  hideWhenDoneDelay: 250,
+	// 		}}
+	// 	  >
+	// 		<Linkify>{outputWithLinks}</Linkify>
+	// 	  </Typist>
+	// 	);
+	//   };
+	  
+    // const renderUrls = () => {
+    //   if (!urls) return null;
+
+    //   return urls.map((url, index) => (
+    //     <div key={index} className="py-2">
+    //       <a href={url} target="_blank" rel="noreferrer">
+    //         {url}
+    //       </a>
+    //     </div>
+    //   ));
+    // };
+	
+	
 	return (<div className="relative mb-12"><div className={`absolute inset-0 bg-gradient-to-r from-${fromColor ? fromColor : "green-400"} to-${toColor ? toColor : "blue-500"} shadow-lg transform md:skew-y-0 md:-rotate-3 md:rounded-3xl -mt-1 md:mt-0`}></div>
 	<div className=" align-bottom bg-white md:rounded-3xl text-left  shadow-xl transform transition-all sm:align-middle transition shadow-md hover:shadow-2xl focus:shadow-2xl">
 
@@ -34,26 +132,12 @@ export const Output = inject('store')(observer(({ store,title, desc, Icon, outpu
 				</div>
 		
 		</div>
-		{code ? null : output ? <div
-			className="whitespace-pre-wrap min-w-full text-gray-800 h-auto text-lg divide-y px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-				{output ? 
-					<Typist
-						stdTypingDelay={0}
-						avgTypingDelay={7}
-						cursor={{
-							show: true,
-							blink: true,
-							element: '|',
-							hideWhenDone: true,
-							hideWhenDoneDelay: 250,
-						}}
-						>
-							{output}
-						</Typist> 
-					: null}
-				
-			
-			</div> : null}
+		{code ? null : (
+          <div className="whitespace-pre-wrap min-w-full text-gray-800 h-auto text-lg divide-y px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            {renderImage()}
+            {/* {renderUrls()} */}
+          </div>
+        )}
 
 			{(output && outputs && outputs.length) ? <div className="divide-y divide-dashed divide-gray-300"> <div></div>
 <div></div></div> : null}
