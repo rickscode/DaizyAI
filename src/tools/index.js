@@ -1,14 +1,13 @@
 
-import socialmediacontent from './socialmediacontent';
 import imagegenerator from './imagegenerator';
 import daizyaiwriter from './daizyaiwriter';
-
+import daizyaismm from './daizyaismm';
 
 const TOOLS = [
 
-	socialmediacontent,
 	imagegenerator,
 	daizyaiwriter,
+	daizyaismm,
 
 ]
 

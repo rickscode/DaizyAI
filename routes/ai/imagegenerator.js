@@ -16,7 +16,7 @@ app.post('/image/imagegenerator', async (req, res, next) => {
 
     const response = await axios.post('https://api.openai.com/v1/images/generations', {
       prompt,
-      n: 1,
+      n: 2,
       size: "1024x1024",
     }, {
       headers: {

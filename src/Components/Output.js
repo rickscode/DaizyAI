@@ -91,7 +91,7 @@ export const QuickTools = inject('store')(observer(({ store, output, outputs, co
 			>
 				<DuplicateIcon className="w-5 h-5" />
 				<Tooltip className="absolute bottom-2 flex flex-col items-center mb-6 group-hover:flex">
-					<span className="relative z-10 p-3 text-sm leading-none text-gray-800 bg-white bg-opacity-25 shadow-lg text-center backdrop-filter backdrop-blur rounded-md">Copy text to clipboard</span>
+					<span className="relative z-10 p-3 text-sm leading-none text-gray-800 bg-white bg-opacity-25 shadow-lg text-center backdrop-filter backdrop-blur rounded-md">Copy or Open In new Tabs</span>
 				</Tooltip>
 			</Shortcut>
 			<div className="flex-1"></div>

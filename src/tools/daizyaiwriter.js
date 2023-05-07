@@ -27,7 +27,7 @@ const obj = {
 
 	prompts: [{
 		title:"Please Enter A Topic",
-		desc: "enter the topic you would like an article or blog post written for",
+		desc: "Enter a topic you would like an article or blog post written for",
 		// n: 1,
 		prompts: [{ 
 				title: "Content", 

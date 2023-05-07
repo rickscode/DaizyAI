@@ -14,14 +14,11 @@ let app = express.Router()
 
 app.use('/', initMiddleware, creditCheck); 
 
-app.use('/', require('./summarize'));
-app.use('/', require('./code/interpret'));
-app.use('/', require('./writing/intro'));
-app.use('/', require('./jobad'));
 app.use('/', require('./helloworld'));
 app.use('/', require('./daizyaiwriter'));
-app.use('/', require('./socialmediacontent.js'));
 app.use('/', require('./imagegenerator'));
+app.use('/', require('./daizyaismm'));
+
 
 app.use('/', contentFilterCheck); 
 app.use('/', creditPayment); 
