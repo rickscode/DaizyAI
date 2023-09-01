@@ -1,8 +1,9 @@
-
-<!-- ![alt text](https://i.ibb.co/G9DFQYH/daizyai.png) -->
 # Daizy AI
 - An Open Source Project
 - OpenAI Powered Content Creation Suite For Digital Nomads & Online Content Creators
+
+  ![Daisyhub](https://github.com/rickscode/DaizyAI/assets/71875733/2db705a6-6248-44bf-abf9-03ea337992b4)
+
 
 ## Features
 - Code Intepreter Agent
